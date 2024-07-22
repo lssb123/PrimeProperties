@@ -1,0 +1,20 @@
+.carousel-image {
+  width: 90%;
+  image-resolution: 1080p;
+  margin: 0;
+  padding-left: 50px;
+  height: 120%;
+  object-fit: cover;
+}
+
+.carousel-dots {
+  bottom: 10px;
+}
+
+.carousel-dot {
+  background-color: #ff4081;
+}
+
+.carousel-dot-active {
+  background-color: #4a90e2;
+}
