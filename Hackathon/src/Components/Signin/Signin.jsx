@@ -16,12 +16,12 @@ export default function Login({ onSignupClick }) {
     };
     console.log(formdata);
     axios({
-      url: "http://172.16.102.40:3001/User/login",
+      url: "http://localhost:3001/User/login",
       method: "post",
       data: formdata,
     })
       .then((res) => {
-        console.log(res.data)
+         
         if (res.data.message === "Login Successfull") {
           console.log(res.data.Token);
           localStorage.setItem("email", res.data.userEmail);

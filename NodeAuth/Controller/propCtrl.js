@@ -160,4 +160,17 @@ router.post("/Contact", protectedRoute,async (req, res) => {
   }
 });
 
+router.get("/DealerDetails/:id",protectedRoute,async (req,res)=>{
+  const d=await Uservice.getDealerDetails(req.params)
+  if(d.length>0)
+  {
+    res.status(200)
+    res.send(d)
+  }
+  else{
+    res.status(500)
+    res.send("Dealer details does not exist")
+  }
+
+})
 module.exports = router;

@@ -40,7 +40,7 @@ const NewNav = () => {
     const email = localStorage.getItem("email");
 
     axios({
-      url: `http://172.17.15.183:3001/protected/profile/${email}`,
+      url: `http://localhost:3001/protected/profile/${email}`,
       method: "get",
       headers: {
         Authorization: t,
@@ -58,24 +58,6 @@ const NewNav = () => {
   },[])
   const handleProfile = () => {
     setShowProfile(true); 
-
-    // const email = localStorage.getItem("email");
-    // axios({
-    //   url: `http://172.17.15.183:3001/protected/profile/${email}`,
-    //   method: "get",
-    //   headers: {
-    //     Authorization: t,
-    //   },
-    // }).then((res) => {
-    //   const data2 = {
-    //     Fname: res.data.post[0].Fname,
-    //     email: res.data.post[0].email,
-    //     phoneNo: res.data.post[0].Phno,
-    //   };
-    //    setName(res.data.post[0].Fname)
-    //   setProfileData(data2);
-    //   setShowProfile(true); // Show profile info
-    // });
   };
 
   const closeProfile = () => {
@@ -186,18 +168,19 @@ const NewNav = () => {
       {/* Profile Display */}
       {showProfile && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg relative">
+          <div className="bg-slate-200 p-6 rounded-lg shadow-lg relative">
             <button
               className="absolute top-2 right-2 text-2xl"
               onClick={closeProfile}
             >
               &times;
             </button>
-            <div className="text-center">
-              <h2 className="text-xl font-bold mb-4">Profile Information</h2>
-              <p>Name: {profileData.Fname}</p>
-              <p>Email: {profileData.email}</p>
-              <p>Phone Number: {profileData.phoneNo}</p>
+            <div className="text-center  ">
+              <h2 className="text-xl font-bold mb-4">Profile </h2>
+              <p><FontAwesomeIcon icon={faUserCircle} className="h-20 w-20" /></p>
+              <p className="text-teal-800 border">Name: {profileData.Fname} </p>
+              <p className="text-teal-800 border">Email: {profileData.email}</p>
+              <p className="text-teal-800 border">Phone Number: {profileData.phoneNo}</p> 
             </div>
           </div>
         </div>

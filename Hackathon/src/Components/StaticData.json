@@ -1,0 +1,60 @@
+{
+  "data": [
+    {
+      "PropertyId": 1,
+      "UserId": 1,
+      "PropertyType": "land",
+      "state": "Andhra Pradesh",
+      "city": "Vishakapatnam",
+      "pincode": 530001,
+      "propertyLandmark": "Bhemili",
+      "ExpectedPrice": 656786,
+      "area": 2500,
+      "AdminApproval": 1,
+      "Siteimage": "https://res.cloudinary.com/deoqsm3z1/image/upload/v1721388355/sixztufzcg4reokq3ob7.jpg",
+      "email": "panchireddi@gmail.com"
+    },
+    {
+      "PropertyId": 2,
+      "UserId": 2,
+      "PropertyType": "apartment",
+      "state": "Andhra Pradesh",
+      "city": "Srikakulam",
+      "pincode": 520001,
+      "propertyLandmark": "Rajam",
+      "ExpectedPrice": 8500000,
+      "area": 1800,
+      "AdminApproval": 0,
+      "Siteimage": "https://res.cloudinary.com/deoqsm3z1/image/upload/v1721388755/weuzuaprsd4ts901g0qn.jpg",
+      "email": "blikhitsrisai@gmail.com"
+    },
+    {
+      "PropertyId": 3,
+      "UserId": 2,
+      "PropertyType": "land",
+      "state": "Andhra Pradesh",
+      "city": "Vizianagaram",
+      "pincode": 520003,
+      "propertyLandmark": "Srinivas Nagar",
+      "ExpectedPrice": 8500000,
+      "area": 3000,
+      "AdminApproval": 0,
+      "Siteimage": "https://res.cloudinary.com/deoqsm3z1/image/upload/v1721388912/oozveguhqqgxlbcolrk4.jpg",
+      "email": "blikhitsrisai@gmail.com"
+    },
+    {
+      "PropertyId": 4,
+      "UserId": 2,
+      "PropertyType": "apartment",
+      "state": "Andhra Pradesh",
+      "city": "Vizianagaram",
+      "pincode": 520003,
+      "propertyLandmark": "Srinivas Nagar",
+      "ExpectedPrice": 8500000,
+      "area": 3000,
+      "AdminApproval": 0,
+      "Siteimage": "https://res.cloudinary.com/deoqsm3z1/image/upload/v1721391895/ftiflzlfinaobayu962z.jpg",
+      "email": "blikhitsrisai@gmail.com"
+    }
+  ]
+}
