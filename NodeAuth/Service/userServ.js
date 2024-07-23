@@ -210,3 +210,19 @@ module.exports.removeCart = async (id) => {
   const [{ affectedRows }] = await db.query(q, [id.wishId]);
   return affectedRows;
 };
+
+
+module.exports.getData = async () => {
+  const q = "select count(PropertyId) as p1 from Properties where PropertyType='land' and AdminApproval = 0"
+  const q1 = "select count(PropertyId) as p2 from Properties where PropertyType='house' and AdminApproval = 0"
+  const q2 = "select count(PropertyId) as p3 from Properties where PropertyType='apartment' and AdminApproval = 0"
+  const [r1] = await db.query(q)
+  const [r2] = await db.query(q1)
+  const [r3] = await db.query(q2)
+  const value = {
+    v1: r1[0].p1,
+    v2: r2[0].p2,
+    v3: r3[0].p3
+  }
+  return value
+}
