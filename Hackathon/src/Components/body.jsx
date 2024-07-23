@@ -91,7 +91,7 @@ const Body = () => {
                 type="submit"
                 className="p-3 bg-blue-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 hover:bg-blue-500"
                 onClick={handleSearch}
-              >
+              >gi
                 Search
               </button>
             </form>
