@@ -30,7 +30,7 @@ const Form = (onFormClick) => {
     const t = cookies.getItem("token");
 
     axios({
-      url: "http://172.17.15.185:3000/protected/setproperty",
+      url: "http://172.16.102.40:3000/protected/setproperty", 
       method: "post",
       headers: {
         "Content-Type": "multipart/form-data",

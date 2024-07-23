@@ -20,7 +20,7 @@ const Body = () => {
     console.log(formdata);
     const t = Cookies.getItem("token");
     axios({
-      url: "http://172.17.15.183:3001/protected/getProperties",
+      url: "http://172.16.102.40:3001/protected/getProperties",
       method: "post",
       headers: {
         authorization: t,
@@ -100,18 +100,6 @@ const Body = () => {
             No data found
           </div>
         ) : (
-          // data.map((item, index) => (
-          //   <div
-          //     key={index}
-          //     className="bg-gray-300 border w-60 p-6 border-gray-100 text-amber-950 rounded text-center"
-          //   >
-          //     <button onClick={() => handlePress(item)}>
-          //       <img src={item.Siteimage} alt="" />
-          //       <p>Property Type: {item.PropertyType}</p>
-          //       <p>Property City: {item.city}</p>
-          //     </button>
-          //   </div>
-          // ))
           data.map((item) => (
             <div key={item.id} className="bg-gray-500 rounded-lg shadow-md overflow-hidden">
             <button onClick={() => handlePress(item)} className="w-full h-full">

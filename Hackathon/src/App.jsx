@@ -6,6 +6,7 @@ import Login from "./Components/Signin/Signin";
 import Signup from "./Components/Signup/Signup";
 import Footer from "./Components/Footer";
 import NewNav from "./Components/NewNav";
+import AdminPage from "./Components/AdminPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />}></Route>
             <Route path="/newnav" element={<NewNav />} />
+            <Route path="/admin" element={<AdminPage />}/>
           </Routes>
           <Footer />
         </BrowserRouter>
