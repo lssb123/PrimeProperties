@@ -4,10 +4,13 @@ import AdminNav from './AdminNav';
 import axios from 'axios';
 
 const AdminPage = () => {
+    const [dataH,setDataH] = useState(0);
+    const [dataL,setDataL] = useState(0);
+    const [dataA,setDataA] = useState(0);
     const data = [
-        { id: 0, value: 10, label: 'Houses' },
-        { id: 1, value: 15, label: 'Lands' },
-        { id: 2, value: 20, label: 'Apartments' },
+        { id: 0, value: dataH, label: 'Houses' },
+        { id: 1, value: dataL, label: 'Lands' },
+        { id: 2, value: dataA, label: 'Apartments' },
       ];
 
     const [adminData, setAdminData] = useState([]);
@@ -27,6 +30,19 @@ const AdminPage = () => {
         }).catch((err)=> {
             console.log(err)
         })
+
+        axios({
+            url: "http://localhost:3001/User/data",
+            method: "get"
+        }).then((res)=> {
+            setDataH(res.data.v1)
+            setDataL(res.data.v2)
+            setDataA(res.data.v3)
+            // console.log(data)
+        }).catch((err)=> {
+            console.log(err)
+        })
+
     }, [])
     
   return (
