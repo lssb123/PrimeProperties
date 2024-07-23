@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import cookies from "js-cookies";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Form = (onFormClick) => {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ const Form = (onFormClick) => {
     const t = cookies.getItem("token");
 
     axios({
-      url: "http://172.16.102.40:3000/protected/setproperty", 
+      url: "http://localhost:3001/protected/setproperty",
       method: "post",
       headers: {
         "Content-Type": "multipart/form-data",

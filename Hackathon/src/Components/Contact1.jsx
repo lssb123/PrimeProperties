@@ -17,7 +17,7 @@ export default function Contact1() {
         console.log(formData)
         const t=cookies.getItem('token')
             axios({
-              url:"http://172.16.102.40:3001/protected/Contact",
+              url:"http://localhost:3001/protected/Contact",
               method:"post",
               data:formData,
               headers:{

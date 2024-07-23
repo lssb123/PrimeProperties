@@ -3,13 +3,15 @@ import Cookies from "js-cookies";
 import React, { useState } from "react";
 import image from "../assets/ab.jpg";
 
+import st from '../Components/StaticData.json';
+
 const Body = () => {
   const [city, setCity] = useState("");
   const [price, setPrice] = useState(0);
   const [type, setType] = useState("");
   const [data, setData] = useState([]);
   const [datalen, setDataLen] = useState(false);
-
+  const [display,setDisplay]=useState(true)
   const handleSearch = (e) => {
     e.preventDefault();
     const formdata = {
@@ -32,9 +34,12 @@ const Body = () => {
         setData(res.data.post);
         // Check if data is fetched
         if (res.data.post) {
-          setDataLen(false); // Data is fetched, hide "No data Found" message
+          setDataLen(false);
+          setDisplay(false) // Data is fetched, hide "No data Found" message
         } else {
-          setDataLen(true); // No data found, show "No data Found" message
+          setDataLen(true);
+          setDisplay(false)
+           // No data found, show "No data Found" message
         }
       })
       .catch((err) => console.log(err));
@@ -95,29 +100,51 @@ const Body = () => {
       </div>
 
       <div className="grid grid-cols-4 gap-x-4 gap-y-8 place-items-stretch mt-8">
-        {datalen ? (
-          <div className="col-span-4 text-center text-red-600 text-xl">
-            No data found
-          </div>
-        ) : (
-          data.map((item) => (
-            <div key={item.id} className="bg-gray-500 rounded-lg shadow-md overflow-hidden">
-            <button onClick={() => handlePress(item)} className="w-full h-full">
-            <img
+
+      {display ? (
+           
+              st.data.map((item, index) => (
+    <div key={index} className="bg-gray-500 rounded-lg shadow-md overflow-hidden">
+       <button onClick={() => handlePress(item)} className="w-full h-full">
+        <img
+          src={item.Siteimage}
+          alt="Property"
+          className="w-full h-48 object-cover"
+        />
+        <div className="p-4">
+          <p className="text-lg font-bold text-gray-800 text-white">
+            Property Type: {item.PropertyType}
+          </p>
+          <p className="text-gray-600 text-white">Property City: {item.city}</p>
+        </div>
+      </button>
+    </div>
+  ))
+) : (
+  datalen ? (
+    <div className="col-span-4 text-center text-red-600 text-xl">
+      No data found
+    </div>
+  ) : (
+    data.map((item) => (
+      <div key={item.id} className="bg-gray-500 rounded-lg shadow-md overflow-hidden">
+        <button onClick={() => handlePress(item)} className="w-full h-full">
+          <img
             src={item.Siteimage}
             alt="Property"
             className="w-full h-48 object-cover"
-            />
-            <div className="p-4 " >
+          />
+          <div className="p-4">
             <p className="text-lg font-bold text-gray-800 text-white">
-            Property Type: {item.PropertyType}
+              Property Type: {item.PropertyType}
             </p>
-            <p className="text-gray-600 text-white" >Property City: {item.city}</p>
-            </div>
-            </button>
-            </div>
-            ))
-        )}
+            <p className="text-gray-600 text-white">Property City: {item.city}</p>
+          </div>
+        </button>
+      </div>
+    ))
+  )
+)}
       </div>
 
     </div>
@@ -126,24 +153,3 @@ const Body = () => {
 
 export default Body;
 
-
-
-{/* <div className="m-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-{data.map((item) => (
-<div key={item.id} className="bg-gray-500 rounded-lg shadow-md overflow-hidden">
-<button onClick={() => handlePress(item)} className="w-full h-full">
-<img
-src={item.Siteimage}
-alt="Property"
-className="w-full h-48 object-cover"
-/>
-<div className="p-4 " >
-<p className="text-lg font-bold text-gray-800 text-white">
-Property Type: {item.PropertyType}
-</p>
-<p className="text-gray-600 text-white" >Property City: {item.city}</p>
-</div>
-</button>
-</div>
-))}
-</div> */}

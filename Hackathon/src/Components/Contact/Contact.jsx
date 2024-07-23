@@ -16,7 +16,7 @@ const [query,setQuery]=useState('')
     }
     console.log(formData)
      axios({
-      url:"http://172.16.102.40:3001/User/ContactUs",
+      url:"http://localhost:3001/User/ContactUs",
       method:"post",
       data:formData
     }).then(res=>{console.log(res) 

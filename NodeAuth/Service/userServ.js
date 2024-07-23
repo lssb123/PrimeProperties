@@ -169,6 +169,15 @@ module.exports.getProperties = async (data) => {
   return rows;
 };
 
+
+module.exports.getDealerDetails=async (obj)=>{
+  let q2="select Fname,Lname,Phno,email from User where UserId=?";
+ console.log(obj.id)
+  const [rows]=await db.query(q2,obj.id );
+  return rows;
+}
+
+
 module.exports.contact = async (obj) => {
   const q = "insert into Contact(name,email,description) values(?,?,?)";
   const [{ affectedRows }] = await db.query(q, [
