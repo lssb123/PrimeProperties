@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 
 export default function Signup({ onSigninClick }) {
   const [Fname, setFname] = useState("");
@@ -26,7 +26,7 @@ export default function Signup({ onSigninClick }) {
     console.log(formdata);
     e.preventDefault();
     axios({
-      url: "http://172.17.15.185:3000/User/insert",
+      url: "http://172.17.15.183:3001/User/insert",
       method: "post",
       data: formdata,
     })

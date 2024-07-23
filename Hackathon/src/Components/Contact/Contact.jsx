@@ -1,10 +1,29 @@
-import React from "react";
+import axios from 'axios';
+import { useState } from "react";
 import contact from "../../assets/contact.jpeg";
-
 const Contact = () => {
+
+const [name,setName]=useState('')
+const [mail,setMail]=useState('')
+const [query,setQuery]=useState('')
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert("Form submitted!");
+    const formData={
+          "name":name,
+        "email":mail,
+        "description":query
+    }
+    console.log(formData)
+     axios({
+      url:"http://172.17.15.183:3001/User/ContactUs",
+      method:"post",
+      data:formData
+    }).then(res=>{console.log(res) 
+      alert("Form submitted!");
+
+    }).catch(err=>console.log(err))
+      
   };
 
   return (
@@ -29,7 +48,11 @@ const Contact = () => {
                   name="name"
                   required
                   className="w-full px-3 py-2 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:black-500"
-                />
+                  onChange={(e)=>{
+                    setName(e.target.value)
+                    console.log(name)
+                  }}
+                 />
               </div>
 
               <div className="mb-4">
@@ -40,7 +63,8 @@ const Contact = () => {
                   placeholder="Email"
                   required
                   className="w-full px-3 py-2 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:black-500"
-                />
+                  onChange={e=>setMail(e.target.value)}
+               />
               </div>
 
               <div className="mb-4">
@@ -51,6 +75,7 @@ const Contact = () => {
                   placeholder="FeedBack"
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:black500"
+                  onChange={e=>setQuery(e.target.value)}
                 ></textarea>
               </div>
 

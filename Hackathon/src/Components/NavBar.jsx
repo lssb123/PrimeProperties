@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link as ScrollLink, Element } from "react-scroll";
+import { useNavigate } from "react-router-dom";
+import { Element, Link as ScrollLink } from "react-scroll";
 import logo from "../assets/logo.png";
-import Images from "./ImageGallery";
 import About from "./About/About";
 import Contact from "./Contact/Contact";
+import Images from "./ImageGallery";
 import Login from "./Signin/Signin";
 import Signup from "./Signup/Signup";
-import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Home = () => {
 
   return (
     <div className="relative">
-      <header className="bg-gray-900 text-white p-4 flex items-center justify-between">
+      <header className="bg-gray-900 text-white p-4 flex items-center justify-between ">
         <div className="flex items-center">
           <img
             src={logo}

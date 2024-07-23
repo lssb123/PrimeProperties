@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import cookies from "js-cookies";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NewNav from "../NewNav";
 export default function Login({ onSignupClick }) {
   const [email, setEmail] = useState("");
@@ -16,12 +16,12 @@ export default function Login({ onSignupClick }) {
     };
     console.log(formdata);
     axios({
-      url: "http://172.17.15.185:3000/User/login",
+      url: "http://172.17.15.183:3001/User/login",
       method: "post",
       data: formdata,
     })
       .then((res) => {
-        // console.log(res.data)
+        console.log(res.data)
         if (res.data.message === "Login Successfull") {
           console.log(res.data.Token);
           localStorage.setItem("email", res.data.userEmail);

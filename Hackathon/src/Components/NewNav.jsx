@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import { Link as ScrollLink, Element } from "react-scroll";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import Body from "./body";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import Cookies from "js-cookies";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Element, Link as ScrollLink } from "react-scroll";
 import logo from "../assets/logo.png";
 import About1 from "./About1";
+import Body from "./body";
 import Contact1 from "./Contact1";
 import Form from "./Form"; // Corrected import path
-import { Link } from "react-router-dom";
-import Cookies from "js-cookies";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const NewNav = () => {
   const [showModal, setShowModal] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [profileData, setProfileData] = useState({});
   const [showProfile, setShowProfile] = useState(false); // State for profile display
+  const [name,setName]=useState('')
   const t = Cookies.getItem("token");
   const navigate = useNavigate();
 
@@ -32,15 +32,15 @@ const NewNav = () => {
     setShowModal(false);
   };
 
-  const handleLogout = (e) => {
+  const handleLogout = () => {
     Cookies.removeItem("token");
     navigate("/");
   };
-
-  const handleProfile = () => {
+  useEffect(()=>{    
     const email = localStorage.getItem("email");
+
     axios({
-      url: `http://172.17.15.185:3000/protected/profile/${email}`,
+      url: `http://172.17.15.183:3001/protected/profile/${email}`,
       method: "get",
       headers: {
         Authorization: t,
@@ -51,9 +51,31 @@ const NewNav = () => {
         email: res.data.post[0].email,
         phoneNo: res.data.post[0].Phno,
       };
+       setName(res.data.post[0].Fname)
       setProfileData(data2);
-      setShowProfile(true); // Show profile info
+       // Show profile info
     });
+  },[])
+  const handleProfile = () => {
+    setShowProfile(true); 
+
+    // const email = localStorage.getItem("email");
+    // axios({
+    //   url: `http://172.17.15.183:3001/protected/profile/${email}`,
+    //   method: "get",
+    //   headers: {
+    //     Authorization: t,
+    //   },
+    // }).then((res) => {
+    //   const data2 = {
+    //     Fname: res.data.post[0].Fname,
+    //     email: res.data.post[0].email,
+    //     phoneNo: res.data.post[0].Phno,
+    //   };
+    //    setName(res.data.post[0].Fname)
+    //   setProfileData(data2);
+    //   setShowProfile(true); // Show profile info
+    // });
   };
 
   const closeProfile = () => {
@@ -100,6 +122,7 @@ const NewNav = () => {
           <button className="text-white" onClick={handleLoginClick}>
             Add Property
           </button>
+          <div>Welcome {name}</div>
           <div className="relative">
             <button
               onClick={toggleDropdown}

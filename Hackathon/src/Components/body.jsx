@@ -1,7 +1,7 @@
+import axios from "axios";
+import Cookies from "js-cookies";
 import React, { useState } from "react";
 import image from "../assets/ab.jpg";
-import Cookies from "js-cookies";
-import axios from "axios";
 
 const Body = () => {
   const [city, setCity] = useState("");
@@ -20,7 +20,7 @@ const Body = () => {
     console.log(formdata);
     const t = Cookies.getItem("token");
     axios({
-      url: "http://172.17.15.185:3000/protected/getProperties",
+      url: "http://172.17.15.183:3001/protected/getProperties",
       method: "post",
       headers: {
         authorization: t,
@@ -100,22 +100,62 @@ const Body = () => {
             No data found
           </div>
         ) : (
-          data.map((item, index) => (
-            <div
-              key={index}
-              className="bg-gray-300 border w-60 p-6 border-gray-100 text-amber-950 rounded text-center"
-            >
-              <button onClick={() => handlePress(item)}>
-                <img src={item.Siteimage} alt="" />
-                <p>Property Type: {item.PropertyType}</p>
-                <p>Property City: {item.city}</p>
-              </button>
+          // data.map((item, index) => (
+          //   <div
+          //     key={index}
+          //     className="bg-gray-300 border w-60 p-6 border-gray-100 text-amber-950 rounded text-center"
+          //   >
+          //     <button onClick={() => handlePress(item)}>
+          //       <img src={item.Siteimage} alt="" />
+          //       <p>Property Type: {item.PropertyType}</p>
+          //       <p>Property City: {item.city}</p>
+          //     </button>
+          //   </div>
+          // ))
+          data.map((item) => (
+            <div key={item.id} className="bg-gray-500 rounded-lg shadow-md overflow-hidden">
+            <button onClick={() => handlePress(item)} className="w-full h-full">
+            <img
+            src={item.Siteimage}
+            alt="Property"
+            className="w-full h-48 object-cover"
+            />
+            <div className="p-4 " >
+            <p className="text-lg font-bold text-gray-800 text-white">
+            Property Type: {item.PropertyType}
+            </p>
+            <p className="text-gray-600 text-white" >Property City: {item.city}</p>
             </div>
-          ))
+            </button>
+            </div>
+            ))
         )}
       </div>
+
     </div>
   );
 };
 
 export default Body;
+
+
+
+{/* <div className="m-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+{data.map((item) => (
+<div key={item.id} className="bg-gray-500 rounded-lg shadow-md overflow-hidden">
+<button onClick={() => handlePress(item)} className="w-full h-full">
+<img
+src={item.Siteimage}
+alt="Property"
+className="w-full h-48 object-cover"
+/>
+<div className="p-4 " >
+<p className="text-lg font-bold text-gray-800 text-white">
+Property Type: {item.PropertyType}
+</p>
+<p className="text-gray-600 text-white" >Property City: {item.city}</p>
+</div>
+</button>
+</div>
+))}
+</div> */}

@@ -145,5 +145,19 @@ router.post("/removeCart", protectedRoute, async (req, res) => {
     });
   }
 });
+router.post("/Contact", protectedRoute,async (req, res) => {
+  const c = await Uservice.contact(req.body);
+  if (c > 0) {
+    res.status(200);
+    res.send({
+      message: "Query submitted successfully",
+    });
+  } else {
+    res.status(500);
+    res.send({
+      message: "Query not submitted successfully",
+    });
+  }
+});
 
 module.exports = router;

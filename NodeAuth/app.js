@@ -13,12 +13,13 @@ app.use(express.json())
 //  app.use((req,res,next)=>{
 //     console.log("Cookies: ", req.cookies);    next()
 //  })
-const port = 3000;
+const port = 3001;
  
 app.use("/User",routes)
 
-app.use("/protected",proc)
 
+app.use("/protected",proc)
+  
 
 app.listen(port,()=>{
     console.log(`Server is running on the port ${port}.. `)

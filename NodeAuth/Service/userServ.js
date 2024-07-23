@@ -170,11 +170,11 @@ module.exports.getProperties = async (data) => {
 };
 
 module.exports.contact = async (obj) => {
-  const q = "insert into Contact( email,description,status) values(?,?,?)";
+  const q = "insert into Contact(name,email,description) values(?,?,?)";
   const [{ affectedRows }] = await db.query(q, [
+    obj.name,
     obj.email,
     obj.description,
-    obj.status,
   ]);
 
   return affectedRows;
