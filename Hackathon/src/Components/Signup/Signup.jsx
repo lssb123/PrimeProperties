@@ -26,7 +26,7 @@ export default function Signup({ onSigninClick }) {
     console.log(formdata);
     e.preventDefault();
     axios({
-      url: "http://172.17.15.183:3001/User/insert",
+      url: "http://172.16.102.40:3001/User/insert",
       method: "post",
       data: formdata,
     })
