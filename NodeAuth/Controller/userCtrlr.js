@@ -202,19 +202,15 @@ router.post("/ContactUs", async (req, res) => {
   }
 });
 
-// [
-// {
-//   "PropertyId": 1,
-//   "UserId": 1,
-//   "PropertyType": "land",
-//   "state": "Andhra Pradesh",
-//   "city": "Vishakapatnam",
-//   "pincode": 530001,
-//   "propertyLandmark": "Bhemili",
-//   "ExpectedPrice": 656786,
-//   "area": 2500,
-//   "AdminApproval": 1,
-//   "Siteimage": "https://res.cloudinary.com/deoqsm3z1/image/upload/v1721381483/ja8jbxye6mfvggjzblxy.png",
-//   "email": "panchireddi@gmail.com"
-// },
-//     {
+router.get("/data", async(req,res) => {
+  const d = await Uservice.getData();
+  if(d) {
+    res.status(200);
+    res.send(d);
+  }else {
+    res.status(500);
+    res.send({
+      message: "Not Obtained",
+    });
+  }
+})
