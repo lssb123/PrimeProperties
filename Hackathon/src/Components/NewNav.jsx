@@ -9,7 +9,9 @@ import logo from "../assets/logo.png";
 import About1 from "./About1";
 import Body from "./body";
 import Contact1 from "./Contact1";
-import Form from "./Form"; // Corrected import path
+import Form from "./Form"; // Corrected import path 
+import Wishlist from "../Wishlist ";
+
 
 const NewNav = () => {
   const [showModal, setShowModal] = useState(false);
@@ -66,7 +68,7 @@ const NewNav = () => {
 
   return (
     <div className="relative">
-      <header className="bg-gray-900 text-white p-4 flex items-center justify-between">
+      <header className="bg-gray-900 text-white p-4 flex items-center justify-between z-50">
         <div className="flex items-center">
           <img
             src={logo}
@@ -190,3 +192,7 @@ const NewNav = () => {
 };
 
 export default NewNav;
+
+
+
+
