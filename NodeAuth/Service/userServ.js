@@ -226,3 +226,9 @@ module.exports.getData = async () => {
   }
   return value
 }
+
+module.exports.getPropertyType=async(data)=>{
+  const q="select * from Properties where PropertyType=?";
+  const [rows]= await db.query(q,data)
+  return rows;
+}

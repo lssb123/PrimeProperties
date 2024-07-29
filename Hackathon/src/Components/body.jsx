@@ -22,7 +22,7 @@ const Body = () => {
     console.log(formdata);
     const t = Cookies.getItem("token");
     axios({
-      url: "http://172.16.102.40:3001/protected/getProperties",
+      url: "http://localhost:3001/protected/getProperties",
       method: "post",
       headers: {
         authorization: t,

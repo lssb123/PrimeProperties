@@ -10,13 +10,13 @@ import About1 from "./About1";
 import Body from "./body";
 import Contact1 from "./Contact1";
 import Form from "./Form"; // Corrected import path
-
 const NewNav = () => {
   const [showModal, setShowModal] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [profileData, setProfileData] = useState({});
   const [showProfile, setShowProfile] = useState(false); // State for profile display
   const [name,setName]=useState('')
+
   const t = Cookies.getItem("token");
   const navigate = useNavigate();
 
@@ -34,6 +34,7 @@ const NewNav = () => {
 
   const handleLogout = () => {
     Cookies.removeItem("token");
+
     navigate("/");
   };
   useEffect(()=>{    
@@ -54,7 +55,17 @@ const NewNav = () => {
        setName(res.data.post[0].Fname)
       setProfileData(data2);
        // Show profile info
-    });
+    }).catch((err)=>{
+      console.log(err)
+      const m=err.response.data.message
+      console.log(m)
+      if(m==='Authorization failed: Token missing')
+      {
+        console.log(m)
+
+            navigate("/invalid")
+      }
+    })
   },[])
   const handleProfile = () => {
     setShowProfile(true); 

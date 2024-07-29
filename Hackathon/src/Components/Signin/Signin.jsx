@@ -29,6 +29,7 @@ export default function Login({ onSignupClick }) {
           navigate("/newnav");
         } else {
           alert("Enter Valid Details");
+          
         }
       })
       .catch((err) => alert("Enter Valid Details"));
