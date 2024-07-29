@@ -1,7 +1,7 @@
 import axios from "axios";
 import cookies from 'js-cookies';
 import { useState } from "react";
-import contact from "../assets/contact.jpeg";
+import contactUs from "../assets/contactUs.avif";
 export default function Contact1() {
   const [name,setName]=useState('')
   const [mail,setMail]=useState('')
@@ -37,7 +37,7 @@ export default function Contact1() {
       <div className="bg-white shadow-lg rounded-lg flex max-w-4xl">
         <div className="w-[60%] relative">
           <img
-            src={contact}
+            src={contactUs}
             alt="Image Not Found"
             className="rounded-l-lg w-full h-full object-cover transform transition-transform duration-300 hover:scale-105"
           />
