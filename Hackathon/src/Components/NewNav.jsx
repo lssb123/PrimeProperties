@@ -12,6 +12,7 @@ import Contact1 from "./Contact1";
 import Form from "./Form"; // Corrected import path
 import Wishlist from "../Wishlist ";
 
+
 const NewNav = () => {
   const [showModal, setShowModal] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -208,3 +209,7 @@ const NewNav = () => {
 };
 
 export default NewNav;
+
+
+
+

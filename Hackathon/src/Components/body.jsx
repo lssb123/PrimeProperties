@@ -23,6 +23,7 @@ const Body = () => {
     const t = Cookies.getItem("token");
     axios({
       url: "http://localhost:3001/protected/getProperties",
+
       method: "post",
       headers: {
         authorization: t,
@@ -115,6 +116,7 @@ const Body = () => {
                 alt="Property"
                 className="rounded-l-lg w-full h-48 object-cover transform transition-transform duration-300 hover:scale-105"
               />
+
               <div className="p-4">
                 <p className="text-lg font-bold text-gray-800 text-white">
                   Property Type: {item.PropertyType}
@@ -149,6 +151,7 @@ const Body = () => {
             <img
               src={selectedProperty.Siteimage}
               alt="Property"
+
               className="rounded w-full h-full object-cover transform transition-transform duration-300 hover:scale-95"
 
               // className="w-full h-48 object-cover mb-4"
@@ -161,7 +164,10 @@ const Body = () => {
               Price: {selectedProperty.ExpectedPrice}
             </p>
 
-            <p className="text-gray-700 ">State: {selectedProperty.state}</p>
+
+            <p className="text-gray-700 ">
+              State: {selectedProperty.state}
+            </p>
             <p className="text-gray-700 ">
               Pin Code: {selectedProperty.pincode}
             </p>
@@ -176,6 +182,7 @@ const Body = () => {
               <button className="bg-gray-800 px-5 text-white p-2 rounded">
                 Add to Wishlist
               </button>
+
             </div>
           </div>
         </div>
@@ -185,3 +192,4 @@ const Body = () => {
 };
 
 export default Body;
+
