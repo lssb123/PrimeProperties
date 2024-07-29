@@ -22,7 +22,8 @@ const Body = () => {
     console.log(formdata);
     const t = Cookies.getItem("token");
     axios({
-      url: "http://172.17.15.190:3001/protected/getProperties",
+      url: "http://localhost:3001/protected/getProperties",
+
       method: "post",
       headers: {
         authorization: t,
@@ -114,7 +115,8 @@ const Body = () => {
                 src={item.Siteimage}
                 alt="Property"
                 className="rounded-l-lg w-full h-48 object-cover transform transition-transform duration-300 hover:scale-105"
-                />
+              />
+
               <div className="p-4">
                 <p className="text-lg font-bold text-gray-800 text-white">
                   Property Type: {item.PropertyType}
@@ -148,7 +150,8 @@ const Body = () => {
             </button>
             <img
               src={selectedProperty.Siteimage}
-              alt="Property" 
+              alt="Property"
+
               className="rounded w-full h-full object-cover transform transition-transform duration-300 hover:scale-95"
 
               // className="w-full h-48 object-cover mb-4"
@@ -160,6 +163,7 @@ const Body = () => {
             <p className="text-gray-700 ">
               Price: {selectedProperty.ExpectedPrice}
             </p>
+
 
             <p className="text-gray-700 ">
               State: {selectedProperty.state}
@@ -173,13 +177,12 @@ const Body = () => {
             <p className="text-gray-700 ">
               Area(in sq.fts): {selectedProperty.city}
             </p>
-            <p className="text-gray-700">
-              Email: {selectedProperty.email}
-            </p> 
+            <p className="text-gray-700">Email: {selectedProperty.email}</p>
             <div className="px-28 pt-4 p">
-            <button className="bg-gray-800 px-5 text-white p-2 rounded">
-              Add to Wishlist
-            </button>
+              <button className="bg-gray-800 px-5 text-white p-2 rounded">
+                Add to Wishlist
+              </button>
+
             </div>
           </div>
         </div>
@@ -189,5 +192,4 @@ const Body = () => {
 };
 
 export default Body;
-
 

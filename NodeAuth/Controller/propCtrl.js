@@ -173,4 +173,19 @@ router.get("/DealerDetails/:id",protectedRoute,async (req,res)=>{
   }
 
 })
+
+
+router.get("/propertyType/:type",protectedRoute,async (req,res)=>{
+  const asset=await Uservice.getPropertyType(req.params.type);
+  if(asset.length>0)
+  {
+    res.status(200)
+    res.send(asset)
+  }
+  else
+  {
+    res.status(500)
+    res.send("Assets does not exist")
+  }
+})
 module.exports = router;

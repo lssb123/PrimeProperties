@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import AdminPage from "./Components/AdminPage";
+import Footer from "./Components/Footer";
+import Invalid from "./Components/invalid";
 import Home from "./Components/NavBar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NewNav from "./Components/NewNav";
 import Login from "./Components/Signin/Signin";
 import Signup from "./Components/Signup/Signup";
-import Footer from "./Components/Footer";
-import NewNav from "./Components/NewNav";
-import AdminPage from "./Components/AdminPage";
 
 function App() {
   return (
@@ -18,7 +18,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />}></Route>
             <Route path="/newnav" element={<NewNav />} />
-            <Route path="/admin" element={<AdminPage />}/>
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/invalid" element={<Invalid />} />
           </Routes>
           <Footer />
         </BrowserRouter>
