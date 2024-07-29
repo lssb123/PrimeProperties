@@ -18,8 +18,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />}></Route>
             <Route path="/newnav" element={<NewNav />} />
-            <Route path="/admin" element={<AdminPage />}/>
-            <Route path="/invalid" element={<Invalid/>} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/invalid" element={<Invalid />} />
           </Routes>
           <Footer />
         </BrowserRouter>

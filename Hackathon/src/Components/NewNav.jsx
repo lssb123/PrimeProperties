@@ -10,12 +10,14 @@ import About1 from "./About1";
 import Body from "./body";
 import Contact1 from "./Contact1";
 import Form from "./Form"; // Corrected import path
+import Wishlist from "../Wishlist ";
+
 const NewNav = () => {
   const [showModal, setShowModal] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [profileData, setProfileData] = useState({});
   const [showProfile, setShowProfile] = useState(false); // State for profile display
-  const [name,setName]=useState('')
+  const [name, setName] = useState("");
 
   const t = Cookies.getItem("token");
   const navigate = useNavigate();
@@ -37,7 +39,7 @@ const NewNav = () => {
 
     navigate("/");
   };
-  useEffect(()=>{    
+  useEffect(() => {
     const email = localStorage.getItem("email");
 
     axios({
@@ -46,29 +48,30 @@ const NewNav = () => {
       headers: {
         Authorization: t,
       },
-    }).then((res) => {
-      const data2 = {
-        Fname: res.data.post[0].Fname,
-        email: res.data.post[0].email,
-        phoneNo: res.data.post[0].Phno,
-      };
-       setName(res.data.post[0].Fname)
-      setProfileData(data2);
-       // Show profile info
-    }).catch((err)=>{
-      console.log(err)
-      const m=err.response.data.message
-      console.log(m)
-      if(m==='Authorization failed: Token missing')
-      {
-        console.log(m)
-
-            navigate("/invalid")
-      }
     })
-  },[])
+      .then((res) => {
+        const data2 = {
+          Fname: res.data.post[0].Fname,
+          email: res.data.post[0].email,
+          phoneNo: res.data.post[0].Phno,
+        };
+        setName(res.data.post[0].Fname);
+        setProfileData(data2);
+        // Show profile info
+      })
+      .catch((err) => {
+        console.log(err);
+        const m = err.response.data.message;
+        console.log(m);
+        if (m === "Authorization failed: Token missing") {
+          console.log(m);
+
+          navigate("/invalid");
+        }
+      });
+  }, []);
   const handleProfile = () => {
-    setShowProfile(true); 
+    setShowProfile(true);
   };
 
   const closeProfile = () => {
@@ -77,7 +80,7 @@ const NewNav = () => {
 
   return (
     <div className="relative">
-      <header className="bg-gray-900 text-white p-4 flex items-center justify-between">
+      <header className="bg-gray-900 text-white p-4 flex items-center justify-between z-50">
         <div className="flex items-center">
           <img
             src={logo}
@@ -188,10 +191,14 @@ const NewNav = () => {
             </button>
             <div className="text-center  ">
               <h2 className="text-xl font-bold mb-4">Profile </h2>
-              <p><FontAwesomeIcon icon={faUserCircle} className="h-20 w-20" /></p>
+              <p>
+                <FontAwesomeIcon icon={faUserCircle} className="h-20 w-20" />
+              </p>
               <p className="text-teal-800 border">Name: {profileData.Fname} </p>
               <p className="text-teal-800 border">Email: {profileData.email}</p>
-              <p className="text-teal-800 border">Phone Number: {profileData.phoneNo}</p> 
+              <p className="text-teal-800 border">
+                Phone Number: {profileData.phoneNo}
+              </p>
             </div>
           </div>
         </div>
