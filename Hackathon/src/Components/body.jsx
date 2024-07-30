@@ -52,9 +52,7 @@ import sdata from './StaticData.json';
     setDetails(false);
     setSelectedProperty(null);
   };
-const handleWish=(e)={
-  
-}
+ 
   return (
     <div className="pb-20">
       <div
@@ -216,7 +214,7 @@ const handleWish=(e)={
             </p>
             <p className="text-gray-700">Email: {selectedProperty.email}</p>
             <div className="px-28 pt-4 p">
-              <button className="bg-gray-800 px-5 text-white p-2 rounded"   onClick={handleWish}>
+              <button className="bg-gray-800 px-5 text-white p-2 rounded"   >
                 Add to Wishlist
               </button>
 
