@@ -64,7 +64,7 @@ const NewNav = () => {
         console.log(err);
         const m = err.response.data.message;
         console.log(m);
-        if (m === "Authorization failed: Token missing") {
+        if (m === "Authorization failed: Token missing" || m === "Authorization failed: Invalid token") {
           console.log(m);
 
           navigate("/invalid");

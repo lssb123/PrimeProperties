@@ -2,8 +2,8 @@ import axios from "axios";
 import Cookies from "js-cookies";
 import React, { useState } from "react";
 import image from "../assets/ab.jpg";
-
-const Body = () => {
+import sdata from './StaticData.json';
+ const Body = () => {
   const [city, setCity] = useState("");
   const [price, setPrice] = useState(0);
   const [type, setType] = useState("");
@@ -11,7 +11,7 @@ const Body = () => {
   const [datalen, setDataLen] = useState(false);
   const [details, setDetails] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
-
+  const [assets,setAssets]=useState(true);
   const handleSearch = (e) => {
     e.preventDefault();
     const formdata = {
@@ -34,9 +34,11 @@ const Body = () => {
         setData(res.data.post);
         if (res.data.post) {
           setDataLen(false);
+          setAssets(false)
         } else {
           setDataLen(true);
-        }
+          setAssets(false)
+        } 
       })
       .catch((err) => console.log(err));
   };
@@ -50,7 +52,9 @@ const Body = () => {
     setDetails(false);
     setSelectedProperty(null);
   };
-
+const handleWish=(e)={
+  
+}
   return (
     <div className="pb-20">
       <div
@@ -99,45 +103,78 @@ const Body = () => {
           </div>
         </div>
       </div>
-
-      <div className=" px-5 py-5 grid grid-cols-4 gap-x-4 gap-y-8 place-items-stretch mt-8">
-        {datalen ? (
-          <div className="col-span-4 text-center text-red-600 text-xl">
-            No data found
-          </div>
-        ) : (
-          data.map((item) => (
-            <div
-              key={item.id}
-              className="bg-gray-500 rounded-lg shadow-md overflow-hidden"
+      <div className="px-5 py-5 grid grid-cols-4 gap-x-4 gap-y-8 mt-8">
+  {assets ? (
+    sdata.data.map(item => (
+        <div
+          key={item.id}
+          className="bg-gray-500 rounded-lg shadow-md overflow-hidden"
+        >
+          <img
+            src={item.Siteimage}
+            alt="Property"
+            className="w-full h-48 object-cover transform transition-transform duration-300 hover:scale-105"
+          />
+          <div className="p-4">
+            <p className="text-lg font-bold text-gray-800">
+              Property Type: {item.PropertyType}
+            </p>
+            <p className="text-gray-600">
+              Property City: {item.city}
+            </p>
+            <p className="text-gray-600">
+              Property Price: {item.ExpectedPrice}
+            </p>
+            <button
+              onClick={() => handlePress(item)}
+              className="w-full h-10 bg-gray-800 text-white rounded mt-4"
             >
-              <img
-                src={item.Siteimage}
-                alt="Property"
-                className="rounded-l-lg w-full h-48 object-cover transform transition-transform duration-300 hover:scale-105"
-              />
-
-              <div className="p-4">
-                <p className="text-lg font-bold text-gray-800 text-white">
-                  Property Type: {item.PropertyType}
-                </p>
-                <p className="text-gray-600 text-white">
-                  Property City: {item.city}
-                </p>
-                <p className="text-gray-600 text-white">
-                  Property Price: {item.ExpectedPrice}
-                </p>
-                <button
-                  onClick={() => handlePress(item)}
-                  className="w-32 h-10 ml-24 bg-gray-800 text-white rounded"
-                >
-                  View details
-                </button>
-              </div>
-            </div>
-          ))
-        )}
+              View details
+            </button>
+          </div>
+        </div>
+      ))
+    
+  ) : (
+    datalen ? (
+      <div className="col-span-4 text-center text-red-600 text-xl">
+        No data found
       </div>
+    ) : (
+      data.map(item => (
+        <div
+          key={item.id}
+          className="bg-gray-500 rounded-lg shadow-md overflow-hidden"
+        >
+          <img
+            src={item.Siteimage}
+            alt="Property"
+            className="w-full h-48 object-cover transform transition-transform duration-300 hover:scale-105"
+          />
+          <div className="p-4">
+            <p className="text-lg font-bold text-gray-800 text-white">
+              Property Type: {item.PropertyType}
+            </p>
+            <p className="text-gray-600 text-white">
+              Property City: {item.city}
+            </p>
+            <p className="text-gray-600 text-white">
+              Property Price: {item.ExpectedPrice}
+            </p>
+            <button
+              onClick={() => handlePress(item)}
+              className="w-full h-10 bg-gray-800 text-white rounded mt-4"
+            >
+              View details
+            </button>
+          </div>
+        </div>
+      ))
+    )
+  )}
+</div>
+
+
 
       {details && selectedProperty && (
         <div className="fixed inset-0 pb-16 flex items-center justify-center bg-black bg-opacity-50">
@@ -179,7 +216,7 @@ const Body = () => {
             </p>
             <p className="text-gray-700">Email: {selectedProperty.email}</p>
             <div className="px-28 pt-4 p">
-              <button className="bg-gray-800 px-5 text-white p-2 rounded">
+              <button className="bg-gray-800 px-5 text-white p-2 rounded"   onClick={handleWish}>
                 Add to Wishlist
               </button>
 
