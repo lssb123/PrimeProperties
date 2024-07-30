@@ -7,6 +7,7 @@ import Home from "./Components/NavBar";
 import NewNav from "./Components/NewNav";
 import Login from "./Components/Signin/Signin";
 import Signup from "./Components/Signup/Signup";
+import Wishlist from "./Wishlist ";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
             <Route path="/signup" element={<Signup />}></Route>
             <Route path="/newnav" element={<NewNav />} />
             <Route path="/admin" element={<AdminPage />} />
-            <Route path="/invalid" element={<Invalid />} />
+            <Route path="/invalid" element={<Invalid />} /> 
+            <Route path="/wishlist"  element={<Wishlist/>}/>
           </Routes>
           <Footer />
         </BrowserRouter>
