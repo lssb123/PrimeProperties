@@ -114,13 +114,13 @@ import sdata from './StaticData.json';
             className="w-full h-48 object-cover transform transition-transform duration-300 hover:scale-105"
           />
           <div className="p-4">
-            <p className="text-lg font-bold text-gray-800">
+            <p className="text-lg font-bold text-white">
               Property Type: {item.PropertyType}
             </p>
-            <p className="text-gray-600">
+            <p className="text-white">
               Property City: {item.city}
             </p>
-            <p className="text-gray-600">
+            <p className="text-white">
               Property Price: {item.ExpectedPrice}
             </p>
             <button
