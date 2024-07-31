@@ -197,8 +197,8 @@ module.exports.AddCart = async (obj) => {
   if (Cdata.length > 0) {
     return 2;
   } else {
-    const q = "insert into Wishlist(UserID,PropertyId) values(?,?)";
-    const [{ affectedRows }] = await db.query(q, [obj.UserID, obj.PropertyId]);
+    const q = "insert into Wishlist(email,PropertyId) values(?,?)";
+    const [{ affectedRows }] = await db.query(q, [obj.email, obj.PropertyId]);
 
     return affectedRows;
   }
@@ -231,4 +231,8 @@ module.exports.getPropertyType=async(data)=>{
   const q="select * from Properties where PropertyType=?";
   const [rows]= await db.query(q,data)
   return rows;
+}
+
+module.exports.checkCart=async(data)=>{
+  const q1="select 1 from Wishlist where ? in ";
 }

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from "react";
 import contact from "../../assets/contact.jpeg";
+import { toast } from 'react-toastify';
 const Contact = () => {
 
 const [name,setName]=useState('')
@@ -20,7 +21,7 @@ const [query,setQuery]=useState('')
       method:"post",
       data:formData
     }).then(res=>{console.log(res) 
-      alert("Form submitted!");
+      toast.success("Form submitted!");
 
     }).catch(err=>console.log(err))
       

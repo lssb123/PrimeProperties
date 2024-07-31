@@ -8,12 +8,15 @@ import NewNav from "./Components/NewNav";
 import Login from "./Components/Signin/Signin";
 import Signup from "./Components/Signup/Signup";
 import Wishlist from "./Wishlist ";
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 function App() {
   return (
     <>
       <div className="root">
+ 
         <BrowserRouter>
+        <ToastContainer/>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -23,8 +26,11 @@ function App() {
             <Route path="/invalid" element={<Invalid />} /> 
             <Route path="/wishlist"  element={<Wishlist/>}/>
           </Routes>
+
           <Footer />
+          
         </BrowserRouter>
+      
       </div>
     </>
   );
