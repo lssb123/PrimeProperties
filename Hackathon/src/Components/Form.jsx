@@ -2,6 +2,7 @@ import axios from "axios";
 import cookies from "js-cookies";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Form = (onFormClick) => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const Form = (onFormClick) => {
     })
       .then((response) => {
         console.log(response.data);
-        alert("Request has been sent to admin for approval.");
+        toast.success("Request has been sent to admin for approval.");
         navigate("/newnav");
       })
       .catch((error) => {

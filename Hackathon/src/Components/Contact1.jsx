@@ -2,6 +2,7 @@ import axios from "axios";
 import cookies from 'js-cookies';
 import { useState } from "react";
 import contactUs from "../assets/contactUs.avif";
+import { toast } from "react-toastify";
 export default function Contact1() {
   const [name,setName]=useState('')
   const [mail,setMail]=useState('')
@@ -25,7 +26,7 @@ export default function Contact1() {
               }
             }).then(res=>{
               console.log(res)
-              alert(res.data.message)
+              toast.success(res.data.message)
             }).catch(err=>{
               console.log(err)
             })

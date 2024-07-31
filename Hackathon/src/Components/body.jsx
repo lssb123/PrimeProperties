@@ -3,6 +3,8 @@ import Cookies from "js-cookies";
 import React, { useState } from "react";
 import image from "../assets/ab.jpg";
 import sdata from './StaticData.json';
+import { toast } from "react-toastify";
+
  const Body = () => {
   const [city, setCity] = useState("");
   const [price, setPrice] = useState(0);
@@ -11,7 +13,8 @@ import sdata from './StaticData.json';
   const [datalen, setDataLen] = useState(false);
   const [details, setDetails] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
-  const [assets,setAssets]=useState(true);
+  const [assets,setAssets]=useState(true); 
+  const [cart,setCart]=useState(false)
   const handleSearch = (e) => {
     e.preventDefault();
     const formdata = {
@@ -52,7 +55,34 @@ import sdata from './StaticData.json';
     setDetails(false);
     setSelectedProperty(null);
   };
- 
+  
+  const handleWish=(id)=>
+  {
+    const d=localStorage.getItem('email')
+    const wd={
+      email:d,
+      PropertyId:id
+
+    }
+    const t = Cookies.getItem("token");
+
+    axios({
+      url:"http://localhost:3001/protected/addcart",
+      method:"post",
+      headers: {
+        authorization: t,
+      },
+      data:wd,
+    }).then(res=>{
+         toast.success("successfully added to the cart")
+         setCart(true)
+      console.log("success")
+    }) .catch(err=>{
+      toast.error("Already added to the cart");
+    })
+  }
+
+   
   return (
     <div className="pb-20">
       <div
@@ -114,13 +144,13 @@ import sdata from './StaticData.json';
             className="w-full h-48 object-cover transform transition-transform duration-300 hover:scale-105"
           />
           <div className="p-4">
-            <p className="text-lg font-bold text-gray-800">
+            <p className="text-lg font-bold text-white">
               Property Type: {item.PropertyType}
             </p>
-            <p className="text-gray-600">
+            <p className="text-white">
               Property City: {item.city}
             </p>
-            <p className="text-gray-600">
+            <p className="text-white">
               Property Price: {item.ExpectedPrice}
             </p>
             <button
@@ -214,10 +244,11 @@ import sdata from './StaticData.json';
             </p>
             <p className="text-gray-700">Email: {selectedProperty.email}</p>
             <div className="px-28 pt-4 p">
-              <button className="bg-gray-800 px-5 text-white p-2 rounded"   >
-                Add to Wishlist
+             <button className="bg-gray-800 px-5 text-white p-2 rounded"  onClick={()=>handleWish(selectedProperty.PropertyId)} >
+                
+        {cart ? 'Added to Wishlist' : 'Add to Wishlist'}
               </button>
-
+               
             </div>
           </div>
         </div>

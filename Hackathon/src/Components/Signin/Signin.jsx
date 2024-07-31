@@ -3,6 +3,7 @@ import cookies from "js-cookies";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NewNav from "../NewNav";
+import { toast } from "react-toastify";
 export default function Login({ onSignupClick }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,11 +29,11 @@ export default function Login({ onSignupClick }) {
           cookies.setItem("token", res.data.Token);
           navigate("/newnav");
         } else {
-          alert("Enter Valid Details");
+          toast.error("Enter Valid Details");
           
         }
       })
-      .catch((err) => alert("Enter Valid Details"));
+      .catch((err) => toast.error("Enter Valid Details"));
   };
 
   return (
