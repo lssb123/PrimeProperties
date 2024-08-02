@@ -147,7 +147,7 @@ module.exports.fromToLands = async (obj1) => {
 };
 
 module.exports.getProperties = async (data) => {
-  let q1 = `select * from Properties where 1=1 `;
+  let q1 = `select * from Properties where 1=1 and 	AdminApproval=1 `;
   console.log(data);
   const city = data.city;
   const maxi = Number(data.maxPrice);
