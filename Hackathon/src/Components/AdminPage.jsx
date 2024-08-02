@@ -35,15 +35,15 @@ const AdminPage = () => {
             url: "http://localhost:3001/User/data",
             method: "get"
         }).then((res)=> {
-            setDataH(res.data.v1)
-            setDataL(res.data.v2)
+            setDataL(res.data.v1)
+            setDataH(res.data.v2)
             setDataA(res.data.v3)
             // console.log(data)
         }).catch((err)=> {
             console.log(err)
         })
 
-    }, [])
+    })
     
   return (
     <>

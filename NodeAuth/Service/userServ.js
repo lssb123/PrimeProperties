@@ -224,12 +224,12 @@ module.exports.getData = async () => {
     v1: r1[0].p1,
     v2: r2[0].p2,
     v3: r3[0].p3
-  }
+  } 
   return value
 }
 
 module.exports.getPropertyType=async(data)=>{
-  const q="select * from Properties where PropertyType=?";
+  const q="select * from Properties where PropertyType=? and AdminApproval=0";
   const [rows]= await db.query(q,data)
   return rows;
 }
@@ -245,4 +245,10 @@ module.exports.GetWhishList=async(email)=>{
   const q="select * from Wishlist  w join Properties p  on w.PropertyId=p.PropertyId where w.email=?";
   const [rows]=await db.query(q,email)
   return rows
+}
+
+module.exports.ApproveProperty=async(id)=>{
+  const q="update Properties set AdminApproval=1 where PropertyId=?"
+  const [{affectedRows}]=await db.query(q,id)
+  return affectedRows
 }

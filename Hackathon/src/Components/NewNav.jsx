@@ -41,7 +41,7 @@ const NewNav = () => {
 
   const handleLogout = () => {
     Cookies.removeItem("token");
-
+    localStorage.removeItem('email')
     navigate("/");
   };
   const handleClose=()=>{

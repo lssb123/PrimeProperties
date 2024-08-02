@@ -214,3 +214,17 @@ router.get("/data", async(req,res) => {
     });
   }
 })
+
+router.get("/Approval/:id",async(req,res)=>{
+  const d=await Uservice.ApproveProperty(req.params.id);
+  if(d!=0)
+  {
+    res.status(200)
+    res.send("Property Approved");
+  }
+  else
+  {
+    res.status(200)
+    res.send("Property not approved");
+  }
+})

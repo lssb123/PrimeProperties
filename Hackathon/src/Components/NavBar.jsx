@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Element, Link as ScrollLink } from "react-scroll";
 import logo from "../assets/logo.png";
@@ -7,12 +7,13 @@ import Contact from "./Contact/Contact";
 import Images from "./ImageGallery";
 import Login from "./Signin/Signin";
 import Signup from "./Signup/Signup";
-
+ 
+ 
 const Home = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [isSignup, setIsSignup] = useState(true);
-
+  
   const handleLoginClick = () => {
     setShowModal(true);
     setIsSignup(false);
@@ -26,7 +27,12 @@ const Home = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
+  // useEffect(()=>{
+  //    if(localStorage.getItem('email')!=null)
+  //    { 
+  //     navigate("/newnav");
+  //    }
+  // },[])
   return (
     <div className="relative">
       <header className="bg-gray-900 text-white p-4 flex items-center justify-between ">
