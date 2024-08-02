@@ -206,8 +206,9 @@ module.exports.AddCart = async (obj) => {
 
 module.exports.removeCart = async (id) => {
   console.log(id);
-  const q = "delete from Wishlist where wishId=?";
-  const [{ affectedRows }] = await db.query(q, [id.wishId]);
+  const q = "delete from Wishlist where PropertyId=?";
+  const [{ affectedRows }] = await db.query(q,id);
+  console.log(affectedRows)
   return affectedRows;
 };
 
@@ -234,5 +235,14 @@ module.exports.getPropertyType=async(data)=>{
 }
 
 module.exports.checkCart=async(data)=>{
-  const q1="select 1 from Wishlist where ? in ";
+  const q1="select 1 from Wishlist where PropertyId=?";
+  const [rows]=await db.query(q1,data)
+  console.log(rows.length)
+  return rows.length
+}
+
+module.exports.GetWhishList=async(email)=>{
+  const q="select * from Wishlist  w join Properties p  on w.PropertyId=p.PropertyId where w.email=?";
+  const [rows]=await db.query(q,email)
+  return rows
 }

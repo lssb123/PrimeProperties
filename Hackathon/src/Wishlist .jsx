@@ -2,7 +2,7 @@ import React from "react";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Wishlist = ({ wishlist, removeFromWishlist }) => {
+const  Wishlist = ({ wishlist, removeFromWishlist }) => {
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">

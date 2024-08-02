@@ -47,7 +47,27 @@ import { toast } from "react-toastify";
   };
 
   const handlePress = (item) => {
+
+
     setSelectedProperty(item);
+  console.log(item.PropertyId)
+    axios({
+      url:`http://localhost:3001/protected/checkCart/${item.PropertyId}`,
+      method:"get",
+      headers:{
+        authorization:Cookies.getItem('token')
+      }
+    }).then(res=>{
+      if(res.data.message === 'Not exists')
+      {
+        setCart(false)
+      }
+      else{
+        setCart(true)
+      }
+    }).catch(err=>{
+      console.log(err)
+    })
     setDetails(true);
   };
 
@@ -81,6 +101,9 @@ import { toast } from "react-toastify";
       toast.error("Already added to the cart");
     })
   }
+
+
+  
 
    
   return (
@@ -244,7 +267,7 @@ import { toast } from "react-toastify";
             </p>
             <p className="text-gray-700">Email: {selectedProperty.email}</p>
             <div className="px-28 pt-4 p">
-             <button className="bg-gray-800 px-5 text-white p-2 rounded"  onClick={()=>handleWish(selectedProperty.PropertyId)} >
+             <button className="bg-gray-800 px-5 text-white p-2 rounded"  onClick={()=>handleWish(selectedProperty.PropertyId)} disabled={cart} >
                 
         {cart ? 'Added to Wishlist' : 'Add to Wishlist'}
               </button>

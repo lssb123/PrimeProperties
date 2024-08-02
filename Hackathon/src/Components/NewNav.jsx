@@ -10,7 +10,8 @@ import About1 from "./About1";
 import Body from "./body";
 import Contact1 from "./Contact1";
 import Form from "./Form"; // Corrected import path
-import Wishlist from "../Wishlist ";
+import Wishlist from '../Wishlist '
+import Wish from "./Wish";
 
 
 const NewNav = () => {
@@ -19,6 +20,9 @@ const NewNav = () => {
   const [profileData, setProfileData] = useState({});
   const [showProfile, setShowProfile] = useState(false); // State for profile display
   const [name, setName] = useState("");
+  const [wdata,setWdata]=useState([]);
+  const [showWish,setShowWish]=useState(false)
+   
 
   const t = Cookies.getItem("token");
   const navigate = useNavigate();
@@ -26,7 +30,7 @@ const NewNav = () => {
   const handleLoginClick = () => {
     setShowModal(true);
   };
-
+ 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -40,6 +44,27 @@ const NewNav = () => {
 
     navigate("/");
   };
+  const handleClose=()=>{
+    setShowWish(false)
+  }
+  const HandleWishlist=()=>{
+    setShowWish(true)
+    const m=localStorage.getItem('email');
+    axios({
+      url:`http://localhost:3001/protected/wishlistData/${m}`,
+      method:"get",
+      headers:{
+        authorization:Cookies.getItem('token')
+      }
+    }).then(res=>{
+         console.log(res.data)
+          setWdata(res.data)
+    }).catch(err=>{
+      console.log(err)
+    })
+    
+  }
+
   useEffect(() => {
     const email = localStorage.getItem("email");
 
@@ -119,6 +144,7 @@ const NewNav = () => {
           <button className="text-white" onClick={handleLoginClick}>
             Add Property
           </button>
+          <button className="text-white" onClick={HandleWishlist}>wishlist</button>
           <div>Welcome {name}</div>
           <div className="relative">
             <button
@@ -204,6 +230,22 @@ const NewNav = () => {
           </div>
         </div>
       )}
+
+      {
+        showWish && (<div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg relative max-h-[80vh] overflow-y-auto">
+            <button
+              className="absolute top-2 right-2"
+              onClick={handleClose}
+            >
+              &times;
+            </button>
+            <div className="text-center">
+                <Wish data={wdata}/>
+            </div>
+          </div>
+        </div>)
+      }
     </div>
   );
 };

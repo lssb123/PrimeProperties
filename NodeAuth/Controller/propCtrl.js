@@ -131,17 +131,17 @@ router.post("/addcart", protectedRoute, async (req, res) => {
   }
 });
 
-router.post("/removeCart", protectedRoute, async (req, res) => {
-  const fav = await Uservice.removeCart(req.body);
+router.get("/removeCart/:id", protectedRoute, async (req, res) => {
+  const fav = await Uservice.removeCart(req.params.id);
   if (fav > 0) {
     res.status(200);
     res.send({
       message: "Property removed from the wishlist",
     });
   } else {
-    res.status(500);
+    res.status(200);
     res.send({
-      message: "Property not removed from the wishlist",
+      message: "Property not present in wishlist",
     });
   }
 });
@@ -186,6 +186,44 @@ router.get("/propertyType/:type",protectedRoute,async (req,res)=>{
   {
     res.status(500)
     res.send("Assets does not exist")
+  }
+})
+
+
+router.get("/checkCart/:id",protectedRoute,async (req,res)=>{
+  const d= await Uservice.checkCart(req.params.id);
+  if(d==0)
+  {
+    res.status(200)
+    res.send({
+      message:"Not exists",
+      post:"true"
+    })
+  }
+  else
+  {
+    res.status(200)
+    res.send({
+      message:"already exists",
+      post:"fasle"
+    })
+    
+  }
+})
+
+
+router.get("/wishlistData/:email",protectedRoute,async (req,res)=>{
+  const d= await Uservice.GetWhishList(req.params.email)
+  console.log(d)
+  if(d.length>0)
+  {
+    res.status(200)
+    res.send(d)
+  }
+  else
+  {
+    res.status(200)
+    res.send("Nothing added to Wishlist")
   }
 })
 module.exports = router;
