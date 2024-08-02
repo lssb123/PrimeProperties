@@ -28,7 +28,15 @@ export default function Login({ onSignupClick }) {
           localStorage.setItem("email", res.data.userEmail);
           cookies.setItem("token", res.data.Token);
           navigate("/newnav");
-        } else {
+        } 
+        else if(res.data.message === "Admin login successful")
+        {
+          console.log(res.data.Token);
+          localStorage.setItem("email", res.data.userEmail);
+          cookies.setItem("token", res.data.Token);
+          navigate("/admin");
+        }
+        else {
           toast.error("Enter Valid Details");
           
         }

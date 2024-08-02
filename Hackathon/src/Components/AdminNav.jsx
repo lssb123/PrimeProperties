@@ -15,7 +15,7 @@ const AdminNav = () => {
   const [land,setLand]=useState(false)
   const [apart,setApart]=useState(false)
   const [pdata,setPdata]=useState([])
-   
+  const navigate=useNavigate()
   const handleHouses=()=>{
        setHouse(true)
        fectchData("house")
@@ -45,11 +45,11 @@ const AdminNav = () => {
       setPdata(res.data)
     })
   }
-  const handleStatus = (propertyId) => {
-    setStatus(prevStatus => ({
-      ...prevStatus,
-      [propertyId]: !prevStatus[propertyId] // Toggle approval status
-    }));
+   
+  const handleLogout = () => {
+    Cookies.removeItem("token");
+    localStorage.removeItem('email')
+    navigate("/");
   };
   const handleApprove=(id,type)=>{
          
@@ -99,7 +99,7 @@ const AdminNav = () => {
           <button className="text-white" onClick={handleAparts}>
             Apartments
           </button>
-          <button className="text-white">
+          <button className="text-white" onClick={handleLogout}>
             Logout
           </button>
         </nav>
@@ -117,7 +117,7 @@ const AdminNav = () => {
             </button>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {
-            
+            pdata.length!=0?(
              pdata.map(item=>( <div
               key={item.id}
               className="bg-gray-500 rounded-lg shadow-md overflow-hidden "
@@ -140,11 +140,12 @@ const AdminNav = () => {
   
                 <button className='bg-red-200 rounded p-2 text-blue-900 ml-16 ' onClick={()=>handleApprove(item.PropertyId,item.PropertyType)}>Approve</button>
               </div>
-            </div>))
+            </div>))):(<p className="text-blue-900">No Houses for approval</p>)
             }
             </div>
           </div>
         </div>)
+        
        }
 
        { 
@@ -157,7 +158,8 @@ const AdminNav = () => {
               &times;
             </button>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {
+            { 
+            pdata.length>0?(
              pdata.map(item=>( <div
               key={item.id}
               className="bg-gray-500 rounded-lg shadow-md overflow-hidden "
@@ -180,7 +182,7 @@ const AdminNav = () => {
   
                 <button className='bg-red-200 rounded p-2 text-blue-900 ml-16 ' onClick={()=>handleApprove(item.PropertyId,item.PropertyType)}>Approve</button>
               </div>
-            </div>))
+            </div>))):(<p className="text-blue-900">No Lands for approval</p>)
             }
             </div>
           </div>
@@ -200,6 +202,7 @@ const AdminNav = () => {
             </button>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {
+              pdata.length>0?(
              pdata.map(item=>( <div
               key={item.id}
               className="bg-gray-500 rounded-lg shadow-md overflow-hidden "
@@ -222,7 +225,7 @@ const AdminNav = () => {
   
                 <button className='bg-red-200 rounded p-2 text-blue-900 ml-16 ' onClick={()=>handleApprove(item.PropertyId,item.PropertyType)}>approve</button>
               </div>
-            </div>))
+            </div>))):(<p className="text-blue-900">No Apartments for approval</p>)
             }
             </div>
           </div>

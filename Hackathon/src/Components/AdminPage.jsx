@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { PieChart } from '@mui/x-charts/PieChart';
 import AdminNav from './AdminNav';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AdminPage = () => {
     const [dataH,setDataH] = useState(0);
@@ -15,7 +16,14 @@ const AdminPage = () => {
 
     const [adminData, setAdminData] = useState([]);
     const [datalen, setDataLen] = useState(false);
+    const navigate=useNavigate()
     useEffect(() => {
+           
+      if(localStorage.getItem('email') === null || localStorage.getItem('email') != 'admin@gmail.com')
+      {
+        navigate('/invalid')
+      }
+
         axios({
             url: "http://localhost:3001/User/admindashboard",
             method: "get"
